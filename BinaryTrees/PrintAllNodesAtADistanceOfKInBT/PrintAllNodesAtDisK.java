@@ -9,12 +9,13 @@ public class PrintAllNodesAtDisK {
             }
         } 
     
-        public static void initialiseParent(Node n,TreeMap<Node,Node>mp){
+        public static void initialiseParent(Node n,HashMap<Node,Node>mp){
             if(n==null){
                 return;
             }
             Queue<Node>q=new LinkedList<>();
             q.add(n);
+            mp.put(n,null);
             while(!q.isEmpty()){
                     Node top=q.remove();
                     if(top.left!=null){
