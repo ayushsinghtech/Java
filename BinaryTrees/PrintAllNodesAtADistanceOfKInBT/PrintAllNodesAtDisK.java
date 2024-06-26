@@ -34,9 +34,9 @@ public class PrintAllNodesAtDisK {
             if(n==null){
                 return arr;
             }
-            TreeMap<Node,Node>mp=new TreeMap<>();
+            HashMap<Node,Node>mp=new HashMap<>();
             initialiseParent(n,mp);
-            TreeMap<Node,Boolean>visited=new TreeMap<>();
+            HashMap<Node,Boolean>visited=new HashMap<>();
             Node curr=target;
             Queue<Node>q=new LinkedList<>();
             q.add(curr);
@@ -44,32 +44,29 @@ public class PrintAllNodesAtDisK {
             visited.put(curr,true);
             while(!q.isEmpty()){
                 int size=q.size();
-                int flag=0;
-                if(temp==size){
+                if(temp==dis){
                     break;
                 }
                 for(int i=0;i<size;i++){
                     Node top=q.remove();
-                    if(mp.get(top)!=null && !visited.get(top)){
+                    if(mp.get(top)!=null && visited.get(mp.get(top))==null){
                         q.add(mp.get(top));
-                        visited.put(top,true);
-                        flag=1;
+                        visited.put(mp.get(top),true);
                     }
-                    if(top.left!=null && !visited.get(top.left)){
+                    if(top.left!=null && visited.get(top.left)==null){
                         q.add(top.left);
                         visited.put(top.left,true);
-                        flag=1;
                     }
-                    if(top.right!=null && !visited.get(top.right)){
+                    if(top.right!=null && visited.get(top.right)==null){
                         q.add(top.right);
                         visited.put(top.right,true);
-                        flag=1;
                     }
                 }
-                    temp++;
+                temp++;
             }
             while(!q.isEmpty()){
-                arr.add(q.remove().data);
+                Node peek=q.remove();
+                arr.add(peek.data);
             }
             return arr;
         }

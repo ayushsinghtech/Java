@@ -13,7 +13,7 @@ public class Diameter {
     public static int helper(Node n){
         int max[]=new int [1];
         diameter(n,max);
-        return max[0];
+        return max[0]+1;
     }
     public static int diameter(Node n,int max[]){
         if(n==null){
